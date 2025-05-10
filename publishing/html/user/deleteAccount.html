@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MONEYFLOW - 회원 탈퇴</title>
+  <link rel="stylesheet" href="/css/main/header.css" />
+  <link rel="stylesheet" href="/css/main/footer.css" />
+  <link rel="stylesheet" href="/css/user/deleteAccount.css" />
+  <script src="/js/user/deleteAccount.js" defer></script>
+</head>
+
+<body>
+
+  <!-- 헤더 -->
+  <header>
+    <a href="/html/main/mf.html" class="logo">
+      <img src="/image/logo_gradient.jpg" alt="머니플로 로고" />
+      <span>MONEYFLOW</span>
+    </a>
+    <nav>
+      <a href="/html/main/mf.html">홈</a>
+      <a href="/html/transactions/transactions.html">내역 관리</a>
+      <a href="/html/categories/categories.html">카테고리 관리</a>
+      <a href="/html/mypage/mypage.html">마이페이지</a>
+      <a href="/html/user/login.html">로그인</a>
+    </nav>
+  </header>
+  <!-- 헤더 -->
+
+  <!-- 컨텐츠 -->
+  <main class="main">
+    <div class="delete-card">
+      <h2>회원 탈퇴</h2>
+      <p class="delete-message">
+        회원 탈퇴를 진행하시면<br>등록된 모든 데이터가 즉시 삭제되며, 복구가 불가능합니다.<br>
+        신중하게 결정 후 진행 부탁드립니다.
+      </p>
+
+      <form id="deleteForm">
+        <input type="password" id="deletePassword" placeholder="현재 비밀번호 입력">
+
+        <label class="delete-label">탈퇴 사유</label>
+        <select id="reason">
+          <option value="">선택해주세요</option>
+          <option value="service">서비스 불만족</option>
+          <option value="use">사용 빈도 낮음</option>
+          <option value="etc">기타</option>
+        </select>
+
+        <button type="submit" id="deleteSubmit" class="delete-button">탈퇴하기</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- 모달 HTML 추가 -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal">
+      <p class="modal-text">
+        정말로 회원 탈퇴를 진행하시겠습니까?<br>
+        탈퇴 후에는 모든 정보가 삭제되며 복구가 불가능합니다.
+      </p>
+      <div class="modal-buttons">
+        <button id="confirmDelete">탈퇴</button>
+        <button id="cancelDelete">취소</button>
+      </div>
+    </div>
+  </div>
+  <!-- 컨텐츠 -->
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        &copy; 2025 Moneyflow. All rights reserved. <br />
+        Powered by Theo Jeong | <a href="mailto:shjeong19943@gmail.com">shjeong19943@gmail.com</a>
+      </div>
+      <div class="footer-right">
+        <a href="#이용약관">이용약관</a>
+        <a href="#개인정보처리방침">개인정보처리방침</a>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 -->
+
+</body>
+
+</html>
