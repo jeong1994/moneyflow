@@ -27,24 +27,6 @@ db
 	회원탈퇴 - 비밀번호
 	비밀번호 변경 - 현재 비밀번호, 새로운 비밀번호
 
-유저
-	이메일
-	비밀번호
-	휴대폰(선택)
-	닉네임(선택)
-
-내역
-	내역타입(수입/지출)
-	날짜
-	금액
-	카테고리유형(기본/내)
-	회원
-
-카테고리
-	카테고리명
-	내역타입(수입/지출)
-	카테고리유형(기본/내)
-
 -----------------------------------------------
 유저 테이블
 	유저번호(PK)
@@ -53,11 +35,45 @@ db
 	휴대폰
 	닉네임
 
+카테고리 테이블
+	카테고리번호(PK)
+	유저번호(FK)
+	카테고리명
+	카테고리유형(기본,커스텀)
+	카테고리타입(수입,지출)
 
+내역 테이블
+	내역번호(PK)
+	유저번호(FK)
+	카테고리번호(FK)
+	날짜
+	금액
+	메모
 
+CREATE TABLE USERS (
+  USER_NUMBER NUMBER,		-- PK
+  EMAIL VARCHAR2(100) NOT NULL UNIQUE,
+  PASSWORD VARCHAR2(100) NOT NULL,
+  PHONE VARCHAR2(20),
+  NICKNAME VARCHAR2(50) NOT NULL UNIQUE
+);
 
+CREATE TABLE CATEGORIES (
+  CATEGORIE_NUMBER,
+  USER_NUMBER NUMBER,         -- FK to USERS
+  CATEGORY_NAME VARCHAR2(50),
+  CATEGORY_SCOPE VARCHAR2(10) CHECK (CATEGORY_SCOPE IN ('기본', '커스텀')),
+  CATEGORY_TYPE VARCHAR2(10) CHECK (CATEGORY_TYPE IN ('수입', '지출')),
+);
 
-
+CREATE TABLE TRANSACTIONS (
+  TRANSACTION_ID NUMBER, 	-- PK
+  USER_ID NUMBER,		-- FK to USERS
+  CATEGORY_NUMBER NUMBER,	-- FK to CATEGORIES
+  TRANSACTION_DATE DATE NOT NULL,
+  AMOUNT NUMBER(10) NOT NULL,
+  MEMO VARCHAR2(100)
+);
 
 
 

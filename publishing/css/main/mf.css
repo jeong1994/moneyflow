@@ -1,0 +1,69 @@
+body {
+  background: #f3f3f3;
+}
+/* 컨텐츠 */
+.select-month {
+  margin-bottom: 20px;
+}
+
+.select-month input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  outline: none;
+  min-width: 200px;
+  transition: 0.05s;
+}
+
+.select-month input:focus {
+  border: 2px solid #002147;
+  background: #ffffff;
+}
+
+.cards {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.card {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chart {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  height: 300px;
+  text-align: center;
+}
+
+.intro-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.add-button {
+  display: block;
+  width: 200px;
+  margin: 60px auto 20px;
+  padding: 10px;
+  background: #002147;
+  color: white;
+  text-align: center;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+}
+/* 컨텐츠 */
