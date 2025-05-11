@@ -1,0 +1,127 @@
+body {
+  background: #f3f3f3;
+}
+
+.main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* 카드 공통 */
+.mypage-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.mypage-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #002147;
+}
+
+.mypage-card p,
+.mypage-card li {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* 버튼 그룹 */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* 버튼 */
+.gray-button {
+  padding: 8px 16px;
+  background: #6d6d6d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.gray-button:hover {
+  background: #4e4e4e;
+}
+
+.delete-button {
+  padding: 8px 16px;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background: #c22b2b;
+}
+
+/* .member-info {
+  position: relative;
+} */
+
+/* .member-info .button-group {
+  position: absolute;
+  bottom: 655px;
+  right: 465px;
+  margin-top: 0;
+} */
+
+/* 요약 정보 */
+.summary {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 1.05rem;
+}
+
+.summary div {
+  background: #f0f0f0;
+  padding: 10px 15px;
+  border-radius: 6px;
+  flex: 1;
+  text-align: center;
+}
+
+/* 최근 내역 */
+.history-list {
+  list-style: disc;
+  padding-left: 20px;
+  color: #555;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.small {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+/* .hidden {
+  display: none;
+} */
+
+.input-message.error {
+  color: red;
+}
+.input-message.success {
+  color: green;
+}
