@@ -1,0 +1,38 @@
+# === Java ===
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# === Gradle ===
+/moneyflow/.gradle/
+/moneyflow/build/
+/moneyflow/bin/
+/moneyflow/out/
+
+# === Eclipse ===
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+/.metadata/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === IntelliJ IDEA ===
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# === Logs ===
+logs/
+*.log
+
+# === 환경파일 ===
+/moneyflow/src/main/resources/application.properties

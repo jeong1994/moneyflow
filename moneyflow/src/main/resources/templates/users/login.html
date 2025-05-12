@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MONEYFLOW - 로그인</title>
+  <link rel="stylesheet" href="/css/main/header.css">
+  <link rel="stylesheet" href="/css/main/footer.css">
+  <link rel="stylesheet" href="/css/user/login.css">
+  <script src="/js/user/login.js" defer></script>
+</head>
+
+<body>
+  <!-- 헤더 -->
+  <header>
+    <a href="/html/main/mf.html" class="logo">
+      <img src="/image/logo_gradient.jpg" alt="머니플로 로고">
+      <span>MONEYFLOW</span>
+    </a>
+    <nav>
+      <a href="/html/main/mf.html">홈</a>
+      <a href="/html/transactions/transactions.html">내역 관리</a>
+      <a href="/html/categories/categories.html">카테고리 관리</a>
+      <a href="/html/mypage/mypage.html">마이페이지</a>
+      <a href="/html/user/login.html">로그인</a>
+    </nav>
+  </header>
+  <!-- 헤더 -->
+
+  <!-- 컨텐츠 -->
+  <main class="main">
+    <div class="login-card">
+      <h2>로그인</h2>
+
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="이메일" />
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="비밀번호" />
+          <button type="button" id="togglePassword" class="eye-button">👁</button>
+        </div>
+
+        <div class="account-links">
+          <a href="/html/user/findAccount.html">ID / PW 찾기</a>
+          <a href="/html/user/signup.html">회원가입</a>
+        </div>
+
+        <button type="submit" class="login-button">로그인</button>
+      </form>
+
+      <div class="sns-login">
+        <p>SNS 계정으로 로그인</p>
+        <div class="sns-buttons">
+          <button class="kakao">카카오 로그인</button>
+          <button class="naver">네이버 로그인</button>
+          <button class="google">구글 로그인</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- 컨텐츠 -->
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        &copy; 2025 Moneyflow. All rights reserved. <br>
+        Powered by Theo Jeong | shjeong19943@gmail.com
+      </div>
+      <div class="footer-right">
+        <a href="#이용약관">이용약관</a>
+        <a href="#개인정보처리방침">개인정보처리방침</a>
+      </div>
+    </div>
+  </footer>
+  <!-- 푸터 -->
+</body>
+
+</html>
