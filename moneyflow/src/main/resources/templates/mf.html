@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MONEYFLOW</title>
+	<!-- CSS -->
+	<link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+	<link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+	<link rel="stylesheet" th:href="@{/css/main/mf.css}">
+
+	<!-- JS -->
+	<script th:src="@{/js/main/mf.js}" defer></script>
+</head>
+
+<body>
+
+	<!-- 헤더 -->
+	<div th:replace="fragment/header :: header"></div>
+	
+	<!-- 컨텐츠 -->
+	<main class="main">
+		<div class="select-month">
+			<input type="date" id="date" />
+		</div>
+
+		<div class="cards">
+			<div class="card">총 수입<br><strong>₩1,500,000</strong></div>
+			<div class="card">총 지출<br><strong>₩800,000</strong></div>
+			<div class="card">순수익<br><strong>₩700,000</strong></div>
+		</div>
+
+		<div class="chart">
+			[ 통계 차트 영역 (chart.js 자리) ]
+		</div>
+
+		<div class="intro-text">
+			돈의 흐름을 파도처럼 크게 만드는 머니플로우
+		</div>
+
+		<a href="/html/transactions/transactions.html" class="add-button">내역 보러가기</a>
+	</main>
+	<!-- 컨텐츠 -->
+
+	<!-- 푸터 -->
+	<div th:replace="fragment/footer :: footer"></div>
+</body>
+
+</html>

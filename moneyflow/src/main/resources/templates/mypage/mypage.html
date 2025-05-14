@@ -1,113 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MONEYFLOW - 마이페이지</title>
-  <link rel="stylesheet" href="/css/main/header.css">
-  <link rel="stylesheet" href="/css/main/footer.css">
-  <link rel="stylesheet" href="/css/mypage/mypage.css">
-  <script src="/js/mypage/mypage.js" defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MONEYFLOW - 마이페이지</title>
+	<!-- CSS -->
+	<link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+	<link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+	<link rel="stylesheet" th:href="@{/css/mypage/mypage.css}">
+
+	<!-- JS -->
+	<script th:src="@{/js/mypage/mypage.js}" defer></script>
 </head>
+
 <body>
-  <!-- 헤더 -->
-  <header>
-    <a href="/html/main/mf.html" class="logo">
-      <img src="/image/logo_gradient.jpg" alt="머니플로 로고">
-      <span>MONEYFLOW</span>
-    </a>
-    <nav>
-      <a href="/html/main/mf.html">홈</a>
-      <a href="/html/transactions/transactions.html">내역 관리</a>
-      <a href="/html/categories/categories.html">카테고리 관리</a>
-      <a href="/html/mypage/mypage.html">마이페이지</a>
-      <a href="/html/user/login.html">로그인</a>
-    </nav>
-  </header>
-  <!-- 헤더 -->
+	<!-- 헤더 -->
+	<div th:replace="fragment/header :: header"></div>
 
-  <!-- 컨텐츠 -->
-  <main class="main">
+	<!-- 컨텐츠 -->
+	<main class="main">
 
-    <!-- 1. 회원 정보 -->
-    <section class="mypage-card member-info">
-      <h2>회원 정보</h2>
-      <div class="member-content">
-        <p>
-          <strong>닉네임:</strong>
-          <span id="nicknameDisplay">개발자</span>
-          <button id="editNicknameBtn" class="gray-button small">변경</button>
-        </p>
-        <div id="nicknameEditArea" style="display: none; margin-top: 10px;">
-          <input type="text" id="newNickname" placeholder="새 닉네임 입력 (2~6자)" />
-          <button id="saveNicknameBtn" class="gray-button small">저장</button>
-          <p id="nicknameEditMessage" class="input-message" style="margin-top: 5px;"></p>
-        </div>
-        <p><strong>이메일:</strong> shjeong19943@gmail.com</p>
-        <p><strong>휴대폰:</strong> </p>
-        <p><strong>가입일:</strong> 2025-04-15</p>
-        <div class="button-group">
-          <button id="changePwBtn" class="gray-button">비밀번호 변경</button>
-          <button id="logoutBtn" class="gray-button">로그아웃</button>
-        </div>
-      </div>
-    </section>
+		<!-- 1. 회원 정보 -->
+		<section class="mypage-card member-info">
+			<h2>회원 정보</h2>
+			<div class="member-content">
+				<p>
+					<strong>닉네임:</strong>
+					<span id="nicknameDisplay">개발자</span>
+					<button id="editNicknameBtn" class="gray-button small">변경</button>
+				</p>
+				<div id="nicknameEditArea" style="display: none; margin-top: 10px;">
+					<input type="text" id="newNickname" placeholder="새 닉네임 입력 (2~6자)" />
+					<button id="saveNicknameBtn" class="gray-button small">저장</button>
+					<p id="nicknameEditMessage" class="input-message" style="margin-top: 5px;"></p>
+				</div>
+				<p><strong>이메일:</strong> shjeong19943@gmail.com</p>
+				<p><strong>휴대폰:</strong> </p>
+				<p><strong>가입일:</strong> 2025-04-15</p>
+				<div class="button-group">
+					<button id="changePwBtn" class="gray-button">비밀번호 변경</button>
+					<button id="logoutBtn" class="gray-button">로그아웃</button>
+				</div>
+			</div>
+		</section>
 
-    <!-- 2. 이번 달 요약 -->
-    <section class="mypage-card">
-      <h2>이번 달 요약</h2>
-      <div class="summary">
-        <div>총 수입 : <strong>₩ 1,500,000</strong></div>
-        <div>총 지출 : <strong>₩ 800,000</strong></div>
-        <div>순수익 : <strong>₩ 700,000</strong></div>
-      </div>
-    </section>
+		<!-- 2. 이번 달 요약 -->
+		<section class="mypage-card">
+			<h2>이번 달 요약</h2>
+			<div class="summary">
+				<div>총 수입 : <strong>₩ 1,500,000</strong></div>
+				<div>총 지출 : <strong>₩ 800,000</strong></div>
+				<div>순수익 : <strong>₩ 700,000</strong></div>
+			</div>
+		</section>
 
-    <!-- 3. 설정 -->
-    <section class="mypage-card">
-      <h2>환경</h2>
-      <p><strong>통화:</strong> ₩ (한국 원)</p>
-    </section>
+		<!-- 3. 설정 -->
+		<section class="mypage-card">
+			<h2>환경</h2>
+			<p><strong>통화:</strong> ₩ (한국 원)</p>
+		</section>
 
-    <!-- 4. 최근 활동 -->
-    <section class="mypage-card">
-      <div class="history-header">
-        <h2>최근 내역</h2>
-        <button class="gray-button small" id="showMoreBtn">더보기</button>
-      </div>
-    
-      <ul class="history-list" id="historyList">
-        <li>2025-04-27 판매수익 ₩150,000 (커피 10잔)</li>
-        <li>2025-04-26 광고비 ₩20,000 (인스타 광고)</li>
-        <li>2025-04-25 기타수익 ₩50,000 (팝업 행사)</li>
-        <li class="toggle-hidden" style="display: none;">2025-04-24 배달비 ₩10,000</li>
-        <li class="toggle-hidden" style="display: none;">2025-04-23 재료비 ₩70,000</li>
-      </ul>
-    </section>
+		<!-- 4. 최근 활동 -->
+		<section class="mypage-card">
+			<div class="history-header">
+				<h2>최근 내역</h2>
+				<button class="gray-button small" id="showMoreBtn">더보기</button>
+			</div>
 
-    <!-- 5. 계정 관리 -->
-    <section class="mypage-card">
-      <h2>계정 관리</h2>
-      <!-- <button class="gray-button">비밀번호 재설정</button> -->
-      <button id="deleteBtn" class="delete-button">회원 탈퇴</button>
-    </section>
+			<ul class="history-list" id="historyList">
+				<li>2025-04-27 판매수익 ₩150,000 (커피 10잔)</li>
+				<li>2025-04-26 광고비 ₩20,000 (인스타 광고)</li>
+				<li>2025-04-25 기타수익 ₩50,000 (팝업 행사)</li>
+				<li class="toggle-hidden" style="display: none;">2025-04-24 배달비 ₩10,000</li>
+				<li class="toggle-hidden" style="display: none;">2025-04-23 재료비 ₩70,000</li>
+			</ul>
+		</section>
 
-  </main>
-  <!-- 컨텐츠 -->
+		<!-- 5. 계정 관리 -->
+		<section class="mypage-card">
+			<h2>계정 관리</h2>
+			<!-- <button class="gray-button">비밀번호 재설정</button> -->
+			<button id="deleteBtn" class="delete-button">회원 탈퇴</button>
+		</section>
 
-  <!-- 푸터 -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-left">
-        &copy; 2025 Moneyflow. All rights reserved. <br>
-        Powered by Theo Jeong | shjeong19943@gmail.com
-      </div>
-      <div class="footer-right">
-        <a href="#이용약관">이용약관</a>
-        <a href="#개인정보처리방침">개인정보처리방침</a>
-      </div>
-    </div>
-  </footer>
-  <!-- 푸터 -->
+	</main>
+	<!-- 컨텐츠 -->
+
+	<!-- 푸터 -->
+	<div th:replace="fragment/footer :: footer"></div>
 </body>
+
 </html>

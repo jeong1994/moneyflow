@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+	<!-- 헤더 -->
+	<header>
+	  <a th:href="@{/}" class="logo">
+	    <img th:src="@{/image/logo_gradient.jpg}" alt="머니플로 로고">
+	    <span>MONEYFLOW</span>
+	  </a>
+	  <nav>
+	    <a th:href="@{/}">홈</a>
+	    <a th:href="@{/html/transactions/transactions.html}">내역 관리</a>
+	    <a th:href="@{/html/categories/categories.html}">카테고리 관리</a>
+	    <a th:href="@{/html/mypage/mypage.html}">마이페이지</a>
+	    <a th:href="@{/html/users/login.html}">로그인</a>
+	  </nav>
+	</header>
+	<!-- 헤더 -->
+</body>
+</html>

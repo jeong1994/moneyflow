@@ -1,114 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MONEYFLOW - 회원가입</title>
-  <link rel="stylesheet" href="/css/main/header.css" />
-  <link rel="stylesheet" href="/css/main/footer.css" />
-  <link rel="stylesheet" href="/css/user/signup.css" />
-  <script src="/js/user/signup.js" defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MONEYFLOW - 회원가입</title>
+	<!-- CSS -->
+	<link rel="stylesheet" th:href="@{/css/fragment/header.css}">
+	<link rel="stylesheet" th:href="@{/css/fragment/footer.css}">
+	<link rel="stylesheet" th:href="@{/css/users/signup.css}" />
+
+	<!-- JS -->
+	<script th:src="@{/js/user/signup.js}" defer></script>
 </head>
 
 <body>
-  <!-- 헤더 -->
-  <header>
-    <a href="/html/main/mf.html" class="logo">
-      <img src="/image/logo_gradient.jpg" alt="머니플로 로고">
-      <span>MONEYFLOW</span>
-    </a>
-    <nav>
-      <a href="/html/main/mf.html">홈</a>
-      <a href="/html/transactions/transactions.html">내역 관리</a>
-      <a href="/html/categories/categories.html">카테고리 관리</a>
-      <a href="/html/mypage/mypage.html">마이페이지</a>
-      <a href="/html/user/login.html">로그인</a>
-    </nav>
-  </header>
-  <!-- 헤더 -->
+	<!-- 헤더 -->
+	<div th:replace="fragment/header :: header"></div>
 
-  <!-- 컨텐츠 -->
-  <main class="main">
-    <div class="signup-card">
-      <h2>회원가입</h2>
+	<!-- 컨텐츠 -->
+	<main class="main">
+		<div class="signup-card">
+			<h2>회원가입</h2>
 
-      <form id="signupForm">
-        <input type="email" id="email" placeholder="이메일" />
-        <p class="input-message" id="emailMessage"></p>
+			<form id="signupForm">
+				<input type="email" id="email" placeholder="이메일" />
+				<p class="input-message" id="emailMessage"></p>
 
-        <div class="password-wrapper">
-          <input type="password" id="password" placeholder="비밀번호 (영문, 숫자, 특수문자 포함 8자 이상)" />
-          <button type="button" id="togglePassword" class="eye-button">👁</button>
-        </div>
-        <p class="input-message" id="passwordMessage"></p>
+				<div class="password-wrapper">
+					<input type="password" id="password" placeholder="비밀번호 (영문, 숫자, 특수문자 포함 8자 이상)" />
+					<button type="button" id="togglePassword" class="eye-button">👁</button>
+				</div>
+				<p class="input-message" id="passwordMessage"></p>
 
-        <div class="password-wrapper">
-          <input type="password" id="confirmPassword" placeholder="비밀번호 확인" />
-          <button type="button" id="toggleConfirm" class="eye-button">👁</button>
-        </div>
-        <p class="input-message" id="confirmMessage"></p>
+				<div class="password-wrapper">
+					<input type="password" id="confirmPassword" placeholder="비밀번호 확인" />
+					<button type="button" id="toggleConfirm" class="eye-button">👁</button>
+				</div>
+				<p class="input-message" id="confirmMessage"></p>
 
-        <div class="phone-wrapper">
-          <input type="tel" id="phone" placeholder="휴대폰 번호 (- 없이 입력, 선택사항)">
-          <button type="button" id="verifyPhone" class="verify-button">인증하기</button>
-        </div>
-        <p class="input-message" id="phoneMessage"></p>
+				<div class="phone-wrapper">
+					<input type="tel" id="phone" placeholder="휴대폰 번호 (- 없이 입력, 선택사항)">
+					<button type="button" id="verifyPhone" class="verify-button">인증하기</button>
+				</div>
+				<p class="input-message" id="phoneMessage"></p>
 
-        <div class="code-wrapper" id="codeSection" style="display: none;">
-          <input type="text" id="verificationCode" placeholder="인증번호 입력">
-          <button type="button" id="confirmCode" class="verify-button">인증 확인</button>
-        </div>
-        <p class="input-message" id="codeMessage"></p>
+				<div class="code-wrapper" id="codeSection" style="display: none;">
+					<input type="text" id="verificationCode" placeholder="인증번호 입력">
+					<button type="button" id="confirmCode" class="verify-button">인증 확인</button>
+				</div>
+				<p class="input-message" id="codeMessage"></p>
 
-        <input type="text" id="nickname" placeholder="닉네임 (공백없이 2~6자, 선택사항)" />
-        <p class="input-message" id="nicknameMessage"></p>
+				<input type="text" id="nickname" placeholder="닉네임 (공백없이 2~6자, 선택사항)" />
+				<p class="input-message" id="nicknameMessage"></p>
 
-        <!-- 약관 동의 체크박스 -->
-        <div class="agreement-section">
-          <div class="checkbox-wrap">
-            <input type="checkbox" id="checkAll">
-            <label for="checkAll">전체 동의<span class="optional-text"></span></label>
-          </div>
-          <hr />
-          <div class="checkbox-wrap">
-            <input type="checkbox" id="checkAge">
-            <label for="checkAge">[필수] 만 14세 이상입니다.</label>
-          </div>
-          <div class="checkbox-wrap">
-            <input type="checkbox" id="checkTerms">
-            <label for="checkTerms">[필수] <a href="#">이용약관</a> 확인</label>
-          </div>
-          <div class="checkbox-wrap">
-            <input type="checkbox" id="checkPrivacy">
-            <label for="checkPrivacy">[필수] <a href="#">개인정보처리방침</a> 확인</label>
-          </div>
-        </div>
+				<!-- 약관 동의 체크박스 -->
+				<div class="agreement-section">
+					<div class="checkbox-wrap">
+						<input type="checkbox" id="checkAll">
+						<label for="checkAll">전체 동의<span class="optional-text"></span></label>
+					</div>
+					<hr />
+					<div class="checkbox-wrap">
+						<input type="checkbox" id="checkAge">
+						<label for="checkAge">[필수] 만 14세 이상입니다.</label>
+					</div>
+					<div class="checkbox-wrap">
+						<input type="checkbox" id="checkTerms">
+						<label for="checkTerms">[필수] <a href="#">이용약관</a> 확인</label>
+					</div>
+					<div class="checkbox-wrap">
+						<input type="checkbox" id="checkPrivacy">
+						<label for="checkPrivacy">[필수] <a href="#">개인정보처리방침</a> 확인</label>
+					</div>
+				</div>
 
-        <button type="submit" class="signup-button">가입하기</button>
+				<button type="submit" class="signup-button">가입하기</button>
 
-        <div class="go-login">
-          이미 계정이 있으신가요? <a href="/html/user/login.html">로그인</a>
-        </div>
-      </form>
-    </div>
-  </main>
-  <!-- 컨텐츠 -->
+				<div class="go-login">
+					이미 계정이 있으신가요? <a href="/html/user/login.html">로그인</a>
+				</div>
+			</form>
+		</div>
+	</main>
+	<!-- 컨텐츠 -->
 
-  <!-- 푸터 -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-left">
-        &copy; 2025 Moneyflow. All rights reserved. <br>
-        Powered by Theo Jeong | shjeong19943@gmail.com
-      </div>
-      <div class="footer-right">
-        <a href="#이용약관">이용약관</a>
-        <a href="#개인정보처리방침">개인정보처리방침</a>
-      </div>
-    </div>
-  </footer>
-  <!-- 푸터 -->
+	<!-- 푸터 -->
+	<div th:replace="fragment/footer :: footer"></div>
 
 </body>
 
