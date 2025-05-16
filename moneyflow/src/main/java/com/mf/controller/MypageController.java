@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("html/mypage")
+@RequestMapping("/mypage")
 public class MypageController {
 
-	@GetMapping("/mypage.html")
+//	마이페이지 접속
+	@GetMapping("/mypage")
 	public String mypage() {
 
 		return "mypage/mypage";

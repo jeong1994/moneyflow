@@ -85,7 +85,6 @@ const codeMessage = document.getElementById('codeMessage');
 
 let phoneVerified = false;
 
-// 인증하기 버튼 클릭
 verifyBtn.addEventListener('click', () => {
   const phone = phoneInput.value.trim();
   const phoneRegex = /^010\d{8}$/;
@@ -98,16 +97,13 @@ verifyBtn.addEventListener('click', () => {
   } else {
     phoneMessage.textContent = '인증번호가 발송되었습니다.';
     phoneMessage.className = 'input-message success';
-    codeSection.style.display = 'flex'; // 인증번호 입력칸 표시
+    codeSection.style.display = 'flex';
   }
 });
 
-// 인증 확인 버튼 클릭
 confirmCodeBtn.addEventListener('click', () => {
   const code = codeInput.value.trim();
 
-  // 실제 서비스에서는 서버에 인증번호 확인 요청함
-  // 여기서는 간단히 "123456"이 정답이라고 가정
   if (code === '123456') {
     codeMessage.textContent = '인증이 완료되었습니다.';
     codeMessage.className = 'input-message success';
@@ -119,14 +115,14 @@ confirmCodeBtn.addEventListener('click', () => {
   }
 });
 
-// 닉네임 검사 (빈값, TODO: 중복검사)
+// 닉네임 검사
 const nicknameInput = document.getElementById('nickname');
 const nicknameMessage = document.getElementById('nicknameMessage');
 
 nicknameInput.addEventListener('input', () => {
   const nickname = nicknameInput.value;
   const trimmed = nickname.trim();
-  const noWhitespace = /^\S+$/; // 공백 포함 여부 검사
+  const noWhitespace = /^\S+$/;
   const validPattern = /^[a-zA-Z0-9가-힣]{2,6}$/;
 
   if (!trimmed || !validPattern.test(trimmed) || !noWhitespace.test(nickname)) {
@@ -138,7 +134,7 @@ nicknameInput.addEventListener('input', () => {
   }
 });
 
-// 체크박스 전체 동의 및 필수 동의 검사
+// 체크박스 검사
 const checkAll = document.getElementById('checkAll');
 const requiredChecks = document.querySelectorAll('#checkAge, #checkTerms, #checkPrivacy');
 
@@ -156,7 +152,7 @@ requiredChecks.forEach(chk => {
 });
 
 // 최종 제출
-document.getElementById('signupForm').addEventListener('submit', (e) => {
+document.getElementById('signupForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   if (!Object.values(validation).every(v => v)) {
@@ -164,34 +160,47 @@ document.getElementById('signupForm').addEventListener('submit', (e) => {
     return;
   }
 
-  const nickname = nicknameInput.value;
-  const trimmedNickname = nickname.trim();
+  const nickname = nicknameInput.value.trim();
   const nicknameRegex = /^[a-zA-Z0-9가-힣]{2,6}$/;
   const hasWhitespace = /\s/;
 
-  if (nickname !== '') {
-    if (trimmedNickname === '' || !nicknameRegex.test(trimmedNickname) || hasWhitespace.test(nickname)) {
-      alert('닉네임은 공백 없이 2~6자의 한글, 영문, 숫자만 가능합니다.');
-      return;
-    }
-  }
-
-  const phone = phoneInput.value.trim();
-
-  if (phone === '') {
-    const skip = confirm('휴대폰 인증 없이 가입하시겠습니까?\n미인증시 이메일 찾기가 불가능합니다');
-    if (skip) {
-      alert('회원가입이 완료되었습니다!');
-      window.location.href = '/html/main/mfMain.html';
-    }
+  if (nickname !== '' && (!nicknameRegex.test(nickname) || hasWhitespace.test(nickname))) {
+    alert('닉네임은 공백 없이 2~6자의 한글, 영문, 숫자만 가능합니다.');
     return;
   }
 
-  if (!phoneVerified) {
+  const phone = phoneInput.value.trim();
+  if (phone !== '' && !phoneVerified) {
     alert('휴대폰 번호 인증을 완료해주세요.');
     return;
   }
 
-  alert('회원가입이 완료되었습니다!');
-  window.location.href = '/html/main/mfMain.html';
+  // 백엔드에 전달할 데이터 구성
+  const data = {
+    email: emailInput.value.trim(),
+    password: passwordInput.value,
+    phone: phone === '' ? null : phone,
+    nickname: nickname === '' ? null : nickname
+  };
+
+  try {
+    const res = await fetch('/users/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      alert('회원가입이 완료되었습니다!');
+      window.location.href = '/';
+    } else {
+      const error = await res.text();
+      alert('회원가입 실패: ' + error);
+    }
+  } catch (err) {
+    console.error('회원가입 요청 실패:', err);
+    alert('서버와의 통신 중 문제가 발생했습니다.');
+  }
 });

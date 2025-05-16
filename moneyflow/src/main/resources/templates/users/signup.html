@@ -11,7 +11,7 @@
 	<link rel="stylesheet" th:href="@{/css/users/signup.css}" />
 
 	<!-- JS -->
-	<script th:src="@{/js/user/signup.js}" defer></script>
+	<script th:src="@{/js/users/signup.js}" defer></script>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 		<div class="signup-card">
 			<h2>회원가입</h2>
 
-			<form id="signupForm">
+			<form id="signupForm" th:action="@{/users/signup}" th:method="post">
 				<input type="email" id="email" placeholder="이메일" />
 				<p class="input-message" id="emailMessage"></p>
 
