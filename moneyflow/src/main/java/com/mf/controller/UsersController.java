@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 // HTML 뷰 렌더링 컨트롤러
 @Controller
@@ -34,13 +36,31 @@ public class UsersController {
         model.addAttribute("signupDTO", new SignupDTO());
         return "users/signup"; // templates/users/signup.html
     }
+    
+    @GetMapping("/check-email")
+    @ResponseBody
+    public boolean checkEmail(@RequestParam("email") String email) {
+        return usersService.isEmailExists(email);
+    }
+
+    @GetMapping("/check-nickname")
+    @ResponseBody
+    public boolean checkNickname(@RequestParam("nickname") String nickname) {
+        return usersService.isNicknameExists(nickname);
+    }
+
+    @GetMapping("/check-phone")
+    @ResponseBody
+    public boolean checkPhone(@RequestParam("phone") String phone) {
+        return usersService.isPhoneExists(phone);
+    }
 
     // 회원가입 폼 제출 처리 (POST 방식)
     @PostMapping("/signup")
-    public String signupSubmit(@ModelAttribute SignupDTO signupDTO, Model model) {
+    public String signupSubmit(@RequestBody SignupDTO signupDTO, Model model) {
         try {
             usersService.signup(signupDTO); // 서비스 호출
-            return "redirect:/html/users/login.html"; // 성공 시 로그인 페이지로 이동
+            return "redirect:/users/login"; // 성공 시 로그인 페이지로 이동
         } catch (IllegalArgumentException e) {
             // 중복 이메일/닉네임 등의 예외 발생 시 다시 회원가입 페이지로
             model.addAttribute("errorMessage", e.getMessage());

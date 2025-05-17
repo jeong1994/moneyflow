@@ -24,34 +24,34 @@
 			<h2>회원가입</h2>
 
 			<form id="signupForm" th:action="@{/users/signup}" th:method="post">
-				<input type="email" id="email" placeholder="이메일" />
+				<input type="email" id="email" name="email" placeholder="이메일" />
 				<p class="input-message" id="emailMessage"></p>
 
 				<div class="password-wrapper">
-					<input type="password" id="password" placeholder="비밀번호 (영문, 숫자, 특수문자 포함 8자 이상)" />
+					<input type="password" id="password" name="password" placeholder="비밀번호 (영문, 숫자, 특수문자 포함 8자 이상)" />
 					<button type="button" id="togglePassword" class="eye-button">👁</button>
 				</div>
 				<p class="input-message" id="passwordMessage"></p>
 
 				<div class="password-wrapper">
-					<input type="password" id="confirmPassword" placeholder="비밀번호 확인" />
+					<input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호 확인" />
 					<button type="button" id="toggleConfirm" class="eye-button">👁</button>
 				</div>
 				<p class="input-message" id="confirmMessage"></p>
 
 				<div class="phone-wrapper">
-					<input type="tel" id="phone" placeholder="휴대폰 번호 (- 없이 입력, 선택사항)">
+					<input type="tel" id="phone" name="phone" placeholder="휴대폰 번호 (- 없이 입력, 선택사항)">
 					<button type="button" id="verifyPhone" class="verify-button">인증하기</button>
 				</div>
 				<p class="input-message" id="phoneMessage"></p>
 
 				<div class="code-wrapper" id="codeSection" style="display: none;">
-					<input type="text" id="verificationCode" placeholder="인증번호 입력">
+					<input type="text" id="verificationCode" name="verificationCode" placeholder="인증번호 입력">
 					<button type="button" id="confirmCode" class="verify-button">인증 확인</button>
 				</div>
 				<p class="input-message" id="codeMessage"></p>
 
-				<input type="text" id="nickname" placeholder="닉네임 (공백없이 2~6자, 선택사항)" />
+				<input type="text" id="nickname" name="nickname" placeholder="닉네임 (공백없이 2~6자, 선택사항)" />
 				<p class="input-message" id="nicknameMessage"></p>
 
 				<!-- 약관 동의 체크박스 -->
