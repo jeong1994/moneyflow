@@ -2,6 +2,7 @@ package com.mf.controller;
 
 import com.mf.dto.LoginDTO;
 import com.mf.dto.SignupDTO;
+import com.mf.entity.UsersEntity;
 import com.mf.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import jakarta.servlet.http.HttpSession;
 
 // HTML 뷰 렌더링 컨트롤러
 @Controller
@@ -69,16 +71,24 @@ public class UsersController {
         }
     }
     
-    // 로그인처리
+    // 로그인 처리
     @PostMapping("/login")
     @ResponseBody
-    public String loginSubmit(@RequestBody LoginDTO loginDTO) {
-        boolean success = usersService.login(loginDTO);
+    public String loginSubmit(@RequestBody LoginDTO loginDTO, HttpSession session) {
+        UsersEntity user = usersService.getLoginUser(loginDTO);
 
-        if (success) {
+        if (user != null) {
+            session.setAttribute("loginUser", user.getUserNumber()); // 회원번호 저장
             return "success";
         } else {
             return "fail";
         }
+    }
+    
+    // 로그아웃 처리
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션 초기화
+        return "redirect:/";  // 메인 페이지 등으로 이동
     }
 }

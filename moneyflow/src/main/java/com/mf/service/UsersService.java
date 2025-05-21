@@ -66,6 +66,20 @@ public class UsersService {
         usersRepository.save(user);
     }
     
+    // 회원정보 리턴용
+    public UsersEntity getLoginUser(LoginDTO dto) {
+        Optional<UsersEntity> optionalUser = usersRepository.findByEmail(dto.getEmail());
+
+        if (optionalUser.isPresent()) {
+            UsersEntity user = optionalUser.get();
+            if (passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
+                return user; // 로그인 성공 시 사용자 정보 반환
+            }
+        }
+
+        return null; // 실패
+    }
+    
     // 로그인
     public boolean login(LoginDTO dto) {
         Optional<UsersEntity> optionalUser = usersRepository.findByEmail(dto.getEmail());

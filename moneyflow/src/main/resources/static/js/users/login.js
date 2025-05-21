@@ -53,4 +53,16 @@ document.addEventListener("DOMContentLoaded", () => {
 			alert("서버 오류가 발생했습니다.");
 		}
 	});
+	
+	// SNS 로그인
+	const snsButtons = document.querySelector(".sns-buttons");
+
+	snsButtons.addEventListener("click", (e) => {
+	  const target = e.target; // 자식요소 이벤트 위임
+	  if (target.classList.contains("kakao") ||
+	      target.classList.contains("naver") ||
+	      target.classList.contains("google")) {
+	    alert("준비중입니다.");
+	  }
+	});
 });

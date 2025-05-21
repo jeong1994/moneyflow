@@ -17,7 +17,10 @@
 	    <a th:href="@{/transactions/transactions}">내역 관리</a>
 	    <a th:href="@{/categories/categories}">카테고리 관리</a>
 	    <a th:href="@{/mypage/mypage}">마이페이지</a>
-	    <a th:href="@{/users/login}">로그인</a>
+
+		<!-- 로그인 여부 -->
+		<a th:if="${session.loginUser == null}" th:href="@{/users/login}">로그인</a>
+		<a th:if="${session.loginUser != null}" th:href="@{/users/logout}">로그아웃</a>
 	  </nav>
 	</header>
 	<!-- 헤더 -->
