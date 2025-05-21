@@ -1,5 +1,6 @@
 package com.mf.controller;
 
+import com.mf.dto.LoginDTO;
 import com.mf.dto.SignupDTO;
 import com.mf.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,19 @@ public class UsersController {
             // 중복 이메일/닉네임 등의 예외 발생 시 다시 회원가입 페이지로
             model.addAttribute("errorMessage", e.getMessage());
             return "users/signup";
+        }
+    }
+    
+    // 로그인처리
+    @PostMapping("/login")
+    @ResponseBody
+    public String loginSubmit(@RequestBody LoginDTO loginDTO) {
+        boolean success = usersService.login(loginDTO);
+
+        if (success) {
+            return "success";
+        } else {
+            return "fail";
         }
     }
 }

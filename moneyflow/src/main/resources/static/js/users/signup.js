@@ -1,5 +1,5 @@
 // 유효성 상태 저장용 객체
-const validation = {
+const validation = { // 검사가 통과되면 true로 변경되게 초기 false
 	email: false,
 	password: false,
 	confirmPassword: false,
@@ -11,13 +11,13 @@ const emailInput = document.getElementById('email');
 const emailMessage = document.getElementById('emailMessage');
 
 emailInput.addEventListener('input', async () => { // 백엔드에서 async 추가
-	const email = emailInput.value.trim();
-	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	const email = emailInput.value.trim(); // 공백 제거
+	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 이메일 형식
 
-	if (!regex.test(email)) {
+	if (!regex.test(email)) { // test는 boolean 을 반환함 - 정규표현식에 맞는지 검사
 		emailMessage.textContent = '올바른 이메일 형식이 아닙니다.';
 		emailMessage.className = 'input-message error';
-		validation.email = false;
+		validation.email = false; // 유효성 상태 거짓으로 검사 통과 불가능
 		return;
 	}/* else { // 퍼블리싱 단계
     emailMessage.textContent = '사용 가능한 이메일 형식입니다.';
@@ -26,10 +26,10 @@ emailInput.addEventListener('input', async () => { // 백엔드에서 async 추�
   }*/
 
 	try { // 백엔드
-		const res = await fetch(`/users/check-email?email=${encodeURIComponent(email)}`);
-		const exists = await res.json();
+		const res = await fetch(`/users/check-email?email=${encodeURIComponent(email)}`); 
+		const exists = await res.json(); // 서버 응답을 json으로, 변환 완료시 까지 대기
 
-		if (exists) {
+		if (exists) { // 서버 응답이 true(이메일 존재하면)
 			emailMessage.textContent = '이미 사용 중인 이메일입니다.';
 			emailMessage.className = 'input-message error';
 			validation.email = false;
@@ -39,7 +39,7 @@ emailInput.addEventListener('input', async () => { // 백엔드에서 async 추�
 			validation.email = true;
 		}
 	} catch (err) {
-		console.error('이메일 중복 확인 실패', err);
+		console.error('이메일 중복 확인 실패', err); //err 콘솔이나 alert에 나오는거 전부 추후 에러페이지로
 		validation.email = false;
 	}
 });

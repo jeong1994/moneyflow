@@ -15,7 +15,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // 🔒 시큐리티 필터 설정
+    // 시큐리티 필터 설정
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http

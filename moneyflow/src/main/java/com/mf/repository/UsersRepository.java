@@ -9,13 +9,13 @@ import java.util.Optional; // findBy 계열 메서드에서 null 체크에 유�
 // 엔티티 클래스, PK 타입 지정
 public interface UsersRepository extends JpaRepository<UsersEntity, Long> { // Spring Data JPA에서 JpaRepository를 상속
 
-    // 이메일 중복 체크
+    // 이메일 유무/중복 검사
     boolean existsByEmail(String email);
 
-    // 핸드폰 중복 체크
+    // 핸드폰 유무/중복 검사
     boolean existsByPhone(String phone);
 
-    // 닉네임 중복 체크
+    // 닉네임 유무/중복 체크
     boolean existsByNickname(String nickname);
 
     // 로그인

@@ -1,8 +1,12 @@
 package com.mf.service;
 
+import com.mf.dto.LoginDTO;
 import com.mf.dto.SignupDTO;
 import com.mf.entity.UsersEntity;
 import com.mf.repository.UsersRepository;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -60,5 +64,17 @@ public class UsersService {
 
         // 저장
         usersRepository.save(user);
+    }
+    
+    // 로그인
+    public boolean login(LoginDTO dto) {
+        Optional<UsersEntity> optionalUser = usersRepository.findByEmail(dto.getEmail());
+
+        if (optionalUser.isPresent()) {
+            UsersEntity user = optionalUser.get();
+            return passwordEncoder.matches(dto.getPassword(), user.getPassword());
+        }
+
+        return false;
     }
 }

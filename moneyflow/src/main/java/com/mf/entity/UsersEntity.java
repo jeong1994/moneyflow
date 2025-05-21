@@ -19,7 +19,7 @@ public class UsersEntity {
 
     @Id // 기본 키(PK) 지정
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_users") // 시퀀스 전략으로 자동 생성 (아래 @SequenceGenerator와 연결됨)
-    @SequenceGenerator(name = "seq_users", sequenceName = "SEQ_USERS", allocationSize = 1) // 사용할 시퀀스 생성기 이름과 실제 DB 시퀀스 이름을 명시
+    @SequenceGenerator(name = "seq_users", sequenceName = "SEQ_USERS", allocationSize = 1) // 사용할 시퀀스 생성기 이름과 실제 DB 시퀀스 이름 명시
     @Column(name = "USER_NUMBER") // USER_NUMBER 컬럼과 매핑됨
     private Long userNumber; // 회원 번호 (PK)
 
